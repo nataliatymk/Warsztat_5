@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Strona główna {% endblock %}
+{% block content %}
+    <a href="/logout">Wyloguj</a>
+   <form method="POST" enctype="multipart/form-data">
+   {{ form }}
+   {% csrf_token %}
+   <button type="submit">dodaj</button>
+   </form>
+    {% for photo in photos %}
+    <img style="width: 100px" src="/media/{{ photo.image }}">
+    <p>
+        {{ photo.creation_date }},
+        {{ photo.user }},
+        {{ photo.path }}
+        <button id="polub">Polub</button>
+    </p>
+    {% endfor %}
+{% endblock %}
